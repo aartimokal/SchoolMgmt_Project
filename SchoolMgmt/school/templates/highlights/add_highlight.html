@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Home Page {% endblock pagetitle %}
+{% block content %}
+{% include 'navbar.html' %}
+{% load static %}
+
+
+
+<section class="container mt-5" style="background-color: white;">
+    <div class="text-center">
+        <h2 class="p-3" style="color: rgb(19, 93, 196);">
+            Add Highlights!
+        </h2>
+    </div>
+    <hr>
+    <div class="p-3">
+        <!-- Action should be added in side form  (call perticular url) the data will be sent by POST method ̥-->
+        <form class="row g-3" action="{% url 'add_highlight' %}" method="post">
+            <!-- need to add CSRF token It will validate our form -->
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label class="form-label">Title of Highlight</label>
+                <input class="form-control" type="text" name="name" placeholder="Title of Highlight"
+                    required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Redirect Link of Highlight</label>
+                <input type="text" class="form-control" name="link" placeholder="Link to redirect" required>
+            </div>
+           
+            <div class="text-center p-3">
+                <!-- Button Type Should be submit to call the form action -->
+                <button type="submit" class="btn btn-primary">Add Highlight</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'Home' %}"> <b>School Management</b> </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'Home' %}">Home</a>
+                </li>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Student Section
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'add_student' %}">Add Students</a></li>
+                        <li><a class="dropdown-item" href="{% url 'show_students' %}">Student Details</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'show_students' %}">Student Section</a>
+                </li>
+                {% endif %}
+
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Teachers Section
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'add_teacher' %}">Add Teacher</a></li>
+                        <li><a class="dropdown-item" href="{% url 'all_teachers' %}">All Teachers</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'all_teachers' %}">Teachers Section</a>
+                </li>
+                {% endif %}
+
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Departments
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'add_department' %}">Add Department</a></li>
+                        <li><a class="dropdown-item" href="{% url 'all_departments' %}">All Department</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'all_departments' %}">Department Section</a>
+                </li>
+                {% endif %}
+
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Settings
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'add_highlight' %}">Add Highlight</a></li>
+                        <li><a class="dropdown-item" href="{% url 'show_highlights' %}">Show Highlight</a></li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Setting Section</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+            <div class="d-flex">
+
+                {% if request.user.is_authenticated %}
+                <a class="nav-link active" aria-current="page" href="{% url 'Home' %}"> {{request.user.username}}</a>
+                <a class="nav-link btn btn-danger" aria-current="page" href="{% url 'logout' %}">
+                    <span style="color:white">LogOut</span></a>
+                {% else %}
+                <a class="nav-link btn btn-primary" aria-current="page" href="{% url 'login' %}">
+                    <span style="color:white">LogIn/SignUp</span></a>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Highlights {% endblock pagetitle %}
+{% block content %}
+{% include 'navbar.html' %}
+<section class="container mt-5" style="background-color: white;">
+    <div class="text-center">
+        <h2 class="p-3" style="color: rgb(19, 93, 196);">
+            List of Highlights !
+        </h2>
+    </div>
+    <hr>
+    <div class="p-2">
+        {% for highlight in highlights %}
+        <div class="card mt-3">
+            <div class="card-header">
+                {{highlight.name}} 
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'delete_highlight' highlight.id %}" class="btn btn-danger float-end">Delete Highlight</a>
+                <a href="{% url 'add_highlight' %}" class="btn btn-primary me-2 float-end">Add Highlight</a>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{highlight.link}}">{{highlight.link}}</a></h5>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

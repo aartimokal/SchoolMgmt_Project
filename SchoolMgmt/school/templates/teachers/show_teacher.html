@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block pagetitle %} Home Page {% endblock pagetitle %}
+{% block content %}
+{% include 'navbar.html' %}
+    <section class="container mt-5" style="background-color: white;">
+    <div class="text-center">
+        <h2 class="p-3" style="color: rgb(19, 93, 196);">
+            Details of Teachers !
+        </h2>
+    </div>
+    <hr>
+    <div class="p-2">
+
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="card-title">{{teacher.name}}
+                    {% if request.user.is_authenticated %}
+                    <span>
+
+                        <a href="{% url 'delete_teacher' teacher.id %}" class="btn btn-danger float-end">Delete</a>
+                        <a href="{% url 'update_teacher' teacher.id %}" class="btn btn-info float-end me-2">Update</a>
+                    </span>
+                     {% endif %}
+                </h5>
+            </div>
+            <div class="card-body">
+
+                <p>Designation : {{teacher.designation}} </p>
+                <p>Department : {{teacher.department.name}} </p>
+                <p>Subjects: {{teacher.subjects}} </p>
+                <p>Qualification : {{teacher.qualification}} </p>
+                <p>Mobile Number : {{teacher.mobile_no}} </p>
+                <p>Email : {{teacher.email}} </p>
+                <p>Address : {{teacher.address}} </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
